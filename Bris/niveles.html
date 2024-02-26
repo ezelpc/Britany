@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz sobre el Sistema Nervioso</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    h1, h4 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Quiz sobre el Sistema Nervioso</h1>
+    <div id="quiz">
+      <h4 id="question"></h4>
+      <div id="options" class="btn-group-vertical"></div>
+      <div id="result"></div>
+      <div id="buttons" class="text-center"></div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "¿Cuál es la célula principal del sistema nervioso?",
+        options: ["Neurona", "Glía", "Astrocito", "Oligodendrocito"],
+        answer: "Neurona"
+      },
+      {
+        question: "¿Qué función cumple la médula espinal?",
+        options: ["Procesar información sensorial", "Controlar los movimientos voluntarios", "Conectar el cerebro con el resto del cuerpo", "Regular funciones vitales como la respiración"],
+        answer: "Conectar el cerebro con el resto del cuerpo"
+      },
+      {
+        question: "¿Qué estructura del cerebro está asociada con el control del lenguaje y el procesamiento de la información auditiva?",
+        options: ["Corteza cerebral", "Cerebelo", "Hipotálamo", "Lóbulo temporal"],
+        answer: "Lóbulo temporal"
+      },
+      {
+        question: "¿Qué es la sinapsis?",
+        options: ["Un tipo de célula nerviosa", "Una hormona producida por la glándula pituitaria", "Un neurotransmisor", "Una estructura que protege el cerebro"],
+        answer: "Un neurotransmisor"
+      },
+      {
+        question: "¿Qué parte del sistema nervioso regula la frecuencia cardíaca y la respiración?",
+        options: ["Sistema nervioso central", "Sistema nervioso periférico", "Sistema nervioso simpático", "Sistema nervioso autónomo"],
+        answer: "Sistema nervioso autónomo"
+      }
+    ];
+
+    const quizContainer = document.getElementById("quiz");
+    const questionElement = document.getElementById("question");
+    const optionsElement = document.getElementById("options");
+    const resultElement = document.getElementById("result");
+    const buttonsElement = document.getElementById("buttons");
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function displayQuestion() {
+      const currentQuestion = questions[currentQuestionIndex];
+      questionElement.textContent = currentQuestion.question;
+      optionsElement.innerHTML = "";
+      currentQuestion.options.forEach(option => {
+        const button = document.createElement("button");
+        button.textContent = option;
+        button.classList.add("btn", "btn-primary", "mb-2");
+        button.addEventListener("click", () => checkAnswer(option));
+        optionsElement.appendChild(button);
+      });
+    }
+
+    function checkAnswer(selectedOption) {
+      const currentQuestion = questions[currentQuestionIndex];
+      if (selectedOption === currentQuestion.answer) {
+        score++;
+      }
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        displayQuestion();
+      } else {
+        displayResult();
+      }
+    }
+
+    function displayResult() {
+      resultElement.textContent = `Puntuación: ${score} de ${questions.length}`;
+      if (score >= 4) {
+        resultElement.classList.add("text-success");
+        resultElement.innerHTML += "<p>Felicidades, has pasado al siguiente nivel!</p>";
+        showNextLevelButton();
+      } else {
+        resultElement.classList.add("text-danger");
+        resultElement.innerHTML += "<p>Lo siento, necesitas contestar al menos 4 preguntas correctamente para pasar al siguiente nivel.</p>";
+        showRetryButton();
+      }
+    }
+
+    function showNextLevelButton() {
+      const nextLevelButton = document.createElement("button");
+      nextLevelButton.textContent = "Siguiente Nivel";
+      nextLevelButton.classList.add("btn", "btn-primary");
+      nextLevelButton.addEventListener("click", () => {
+        // Aquí puedes agregar el código para pasar al siguiente nivel
+        alert("¡Felicidades! Has pasado al siguiente nivel.");
+        window.location.href="nivel3.html";
+    });
+      buttonsElement.appendChild(nextLevelButton);
+    }
+
+    function showRetryButton() {
+      const retryButton = document.createElement("button");
+      retryButton.textContent = "Intentar de nuevo";
+      retryButton.classList.add("btn", "btn-primary");
+      retryButton.addEventListener("click", () => {
+        currentQuestionIndex = 0;
+        score = 0;
+        resultElement.textContent = "";
+        buttonsElement.innerHTML = "";
+        displayQuestion();
+      });
+      buttonsElement.appendChild(retryButton);
+    }
+
+    displayQuestion();
+  </script>
+</body>
+</html>

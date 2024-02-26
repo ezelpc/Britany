@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Agregar los metadatos necesarios -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Enlazar el archivo CSS de Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Agregar un título a la página -->
+    <title>Sistema Nervioso con Bootstrap</title>
+</head>
+<body style="background-color: #f0f0f0;">
+    <div class="container mt-5">
+        <!-- Card de bienvenida -->
+        <div class="card text-center border-0 shadow-lg p-3 mb-5 bg-body rounded" id="bienvenidaCard">
+            <h1 class="card-title mt-3" style="color: #3c9beb;">SISTEMA NERVIOSO</h1>
+            <div class="card-body">
+                <p class="card-text" style="color: #6c757d;">¡Bienvenido al Juego del Sistema Nervioso!</p>
+                <p class="card-text" style="color: #6c757d;">¡Explora el fascinante mundo de la neurociencia en una aventura emocionante y educativa!</p>
+                <p class="card-text" style="color: #6c757d;">¡Prepárate para desafiar tu mente y descubrir los secretos del sistema nervioso en este emocionante juego!</p>
+                <p class="card-text" style="color: #6c757d;">¡Diviértete mientras aprendes!</p>
+                <a href="#nivelesCard" class="btn btn-primary" style="background-color: #3c9beb; border-color: #3c9beb;">Comenzar</a>
+            </div>
+        </div>
+        
+        <!-- Card de selección de niveles -->
+        <div class="card text-center border-0 shadow p-3 mb-5 bg-body rounded" id="nivelesCard" style="display: none;">
+            <div class="card-body">
+                <h1 class="card-title mt-3" style="color: #3c9beb;">Selecciona un Nivel</h1>
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="card border-0 mb-3" style="background-color: #f0f0f0;">
+                            <div class="card-body">
+                                <h2 class="card-title" style="color: #3c9beb;">Nivel 1</h2>
+                                <a href="./Juego.html" class="btn btn-primary" style="background-color: #3c9beb; border-color: #3c9beb;">Ir a Nivel 1</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 mb-3" style="background-color: #f0f0f0;">
+                            <div class="card-body">
+                                <h2 class="card-title" style="color: #3c9beb;">Nivel 2</h2>
+                                <a href="./niveles.html" class="btn btn-primary" style="background-color: #3c9beb; border-color: #3c9beb;">Ir a Nivel 2</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 mb-3" style="background-color: #f0f0f0;">
+                            <div class="card-body">
+                                <h2 class="card-title" style="color: #3c9beb;">Nivel 3</h2>
+                                <a href="./Nivel3.html" class="btn btn-primary" style="background-color: #3c9beb; border-color: #3c9beb;">Ir a Nivel 3</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    
+    <!-- Incluir el archivo JavaScript de Bootstrap (opcional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Mostrar la carta de selección de niveles cuando se hace clic en "Comenzar"
+        document.querySelector('a[href="#nivelesCard"]').addEventListener('click', function() {
+            document.getElementById('bienvenidaCard').style.display = 'none';
+            document.getElementById('nivelesCard').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
